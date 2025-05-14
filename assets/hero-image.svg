@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <!-- BNB Chain Background -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F0B90B;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#F0B90B;stop-opacity:0.3" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="300" cy="200" r="180" fill="url(#grad1)" />
+  
+  <!-- BNB Logo -->
+  <g transform="translate(220, 120) scale(0.8)">
+    <circle cx="100" cy="100" r="90" fill="#F0B90B" />
+    <path d="M100,65 L135,100 L100,135 L65,100 L100,65 Z M100,30 L170,100 L100,170 L30,100 L100,30 Z M100,145 L135,110 L170,145 L135,180 L100,145 Z M100,145 L65,110 L30,145 L65,180 L100,145 Z" fill="white" />
+  </g>
+  
+  <!-- Rocket -->
+  <g transform="translate(350, 100) rotate(45) scale(0.6)">
+    <path d="M50,20 C90,-20 150,-20 190,20 C230,60 230,120 190,160 L120,230 C110,240 90,240 80,230 L10,160 C-30,120 -30,60 10,20 C50,-20 110,-20 150,20 Z" fill="#1E2026" />
+    <circle cx="100" cy="90" r="30" fill="#F0B90B" />
+    <path d="M0,180 L-20,220 L20,220 Z" fill="#1E2026" />
+    <path d="M200,180 L180,220 L220,220 Z" fill="#1E2026" />
+  </g>
+  
+  <!-- Code Blocks -->
+  <g transform="translate(100, 250)">
+    <rect x="0" y="0" width="120" height="20" rx="3" fill="#1E2026" opacity="0.8" />
+    <rect x="10" y="30" width="80" height="20" rx="3" fill="#1E2026" opacity="0.6" />
+    <rect x="20" y="60" width="100" height="20" rx="3" fill="#1E2026" opacity="0.4" />
+  </g>
+  
+  <!-- Nodes Connection -->
+  <g stroke="#F0B90B" stroke-width="2" fill="none">
+    <path d="M150,150 C200,100 250,200 300,150" />
+    <path d="M300,150 C350,100 400,200 450,150" />
+    <circle cx="150" cy="150" r="5" fill="#F0B90B" />
+    <circle cx="300" cy="150" r="5" fill="#F0B90B" />
+    <circle cx="450" cy="150" r="5" fill="#F0B90B" />
+  </g>
+</svg>
