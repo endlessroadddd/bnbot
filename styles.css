@@ -30,13 +30,39 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     background-color: var(--background-color);
-    background-image: linear-gradient(rgba(15, 15, 15, 0.95), rgba(15, 15, 15, 0.95)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="0" y="10" font-family="monospace" font-size="10" fill="%23222">01010101</text></svg>');
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 粒子背景 */
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+/* 渐变背景 */
+.gradient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 10% 10%, rgba(240, 185, 11, 0.1), transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(15, 140, 255, 0.1), transparent 40%);
+    z-index: -1;
+    opacity: 0.7;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 1;
 }
 
 section {
@@ -66,6 +92,20 @@ a:hover {
 
 .highlight {
     color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background-color: rgba(240, 185, 11, 0.2);
+    z-index: -1;
+    transform: skewX(-15deg);
 }
 
 /* Button styles */
@@ -78,18 +118,36 @@ a:hover {
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .primary-btn {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     border: none;
+    box-shadow: 0 4px 12px rgba(240, 185, 11, 0.2);
 }
 
 .primary-btn:hover {
     background-color: #E0A800;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(240, 185, 11, 0.3);
+    box-shadow: 0 6px 16px rgba(240, 185, 11, 0.4);
+}
+
+.primary-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.primary-btn:hover::before {
+    left: 100%;
 }
 
 /* Header */
@@ -100,10 +158,17 @@ header {
     padding: 20px 0;
     position: sticky;
     top: 0;
-    background-color: rgba(15, 15, 15, 0.95);
+    background-color: rgba(15, 15, 15, 0.8);
     backdrop-filter: blur(10px);
     z-index: 1000;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid rgba(42, 42, 42, 0.5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    padding: 15px 0;
+    background-color: rgba(15, 15, 15, 0.95);
 }
 
 .logo h1 {
@@ -111,6 +176,26 @@ header {
     font-weight: 700;
     margin: 0;
     color: var(--primary-color);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+}
+
+.logo h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s ease;
+}
+
+.logo h1:hover::after {
+    transform: scaleX(1);
 }
 
 nav ul {
@@ -125,12 +210,13 @@ nav ul li {
 nav ul li a {
     font-weight: 500;
     position: relative;
+    padding: 5px 0;
 }
 
 nav ul li a::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: 0;
     left: 0;
     width: 0;
     height: 2px;
@@ -146,12 +232,36 @@ nav ul li a:hover::after {
 .hero {
     padding: 100px 0 60px;
     text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(240, 185, 11, 0.05), transparent 70%);
+    z-index: -1;
 }
 
 .hero-content h1 {
     font-size: 2.5rem;
     max-width: 800px;
     margin: 0 auto 40px;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .launch-options {
@@ -159,6 +269,16 @@ nav ul li a:hover::after {
     justify-content: center;
     gap: 20px;
     margin-bottom: 40px;
+    animation: fadeIn 1.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .option-btn {
@@ -167,52 +287,49 @@ nav ul li a:hover::after {
     background-color: var(--background-alt);
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.option-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transition: 0.5s;
+}
+
+.option-btn:hover::before {
+    left: 100%;
 }
 
 .option-btn.active, .option-btn:hover {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(240, 185, 11, 0.3);
 }
 
-/* Launch phases */
-.launch-phases {
-    padding-top: 20px;
-}
-
-.tabs {
-    display: flex;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 40px;
-}
-
-.tab {
-    padding: 12px 24px;
-    position: relative;
-    font-weight: 500;
-}
-
-.tab.active {
-    color: var(--primary-color);
-}
-
-.tab.active::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--primary-color);
-}
-
-/* Expandable cards */
+/* 增强卡片样式 */
 .expandable-card {
-    background-color: var(--background-alt);
+    background-color: rgba(26, 26, 26, 0.7);
     border-radius: 12px;
     margin-bottom: 20px;
     overflow: hidden;
     border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    transform: translateY(0);
+}
+
+.expandable-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-color: rgba(240, 185, 11, 0.3);
 }
 
 .card-header {
@@ -220,6 +337,23 @@ nav ul li a:hover::after {
     align-items: center;
     padding: 20px;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+    transition: 0.5s;
+}
+
+.expandable-card:hover .card-header::before {
+    left: 100%;
 }
 
 .card-icon {
@@ -399,4 +533,33 @@ footer {
     .card-content {
         padding: 0 20px 20px;
     }
+}
+
+/* 添加以下代码到您的CSS文件中 */
+
+/* 悬停单词效果 */
+.hover-word {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.hover-word::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.hover-word:hover {
+    color: var(--primary-color);
+}
+
+.hover-word:hover::after {
+    width: 100%;
 }

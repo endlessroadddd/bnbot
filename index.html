@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="particles-container" id="particles-js"></div>
+    <div class="gradient-bg"></div>
+    
     <div class="container">
         <header>
             <div class="logo">
@@ -27,9 +30,25 @@
             </div>
         </header>
 
+        <!-- 在hero-content的h1标签中，将文本拆分为单独的span元素 -->
         <section class="hero">
             <div class="hero-content">
-                <h1>Your guide to launching and growing on <span class="highlight">BNB Chain</span> from pre-launch, launch, to post launch.</h1>
+                <h1>
+                    <span class="hover-word">Your</span> 
+                    <span class="hover-word">guide</span> 
+                    <span class="hover-word">to</span> 
+                    <span class="hover-word">launching</span> 
+                    <span class="hover-word">and</span> 
+                    <span class="hover-word">growing</span> 
+                    <span class="hover-word">on</span> 
+                    <span class="highlight">BNB Chain</span> 
+                    <span class="hover-word">from</span> 
+                    <span class="hover-word">pre-launch,</span> 
+                    <span class="hover-word">launch,</span> 
+                    <span class="hover-word">to</span> 
+                    <span class="hover-word">post</span> 
+                    <span class="hover-word">launch.</span>
+                </h1>
                 <div class="launch-options">
                     <a href="#app" class="option-btn active">I'm launching an app</a>
                     <a href="#token" class="option-btn">I'm launching a token</a>
@@ -153,6 +172,7 @@
         </footer>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
